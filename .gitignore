@@ -1,2 +1,8 @@
 
 *.class
+*.bin
+*.lock
+.vscode/settings.json
+*.prefs
+.classpath
+.project
