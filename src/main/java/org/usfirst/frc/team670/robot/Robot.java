@@ -62,6 +62,9 @@ import org.usfirst.frc.team670.robot.subsystems.Intake;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import org.usfirst.frc.team670.robot.commands.drive.Drive;
+
+
 /**
  * @author vsharma
  */
@@ -305,122 +308,123 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		String data = DriverStation.getInstance().getGameSpecificMessage(); 
+		// String data = DriverStation.getInstance().getGameSpecificMessage(); 
 
-		//If the string data is invalid, then keep checking for valid data-----------------------------------
-		if(data == null)
-			data = "";
+		// //If the string data is invalid, then keep checking for valid data-----------------------------------
+		// if(data == null)
+		// 	data = "";
 
-		int retries = 100;
+		// int retries = 100;
 
-		while(data.length() < 3 && retries > 0)
-		{
-			DriverStation.reportError("Game data is not valid", false);
-			try{
-				Thread.sleep(5);
-				data = DriverStation.getInstance().getGameSpecificMessage();
-				if(data == null)
-					data = "";
-			}
-			catch(Exception e){}
-			retries--;
-		}
+		// while(data.length() < 3 && retries > 0)
+		// {
+		// 	DriverStation.reportError("Game data is not valid", false);
+		// 	try{
+		// 		Thread.sleep(5);
+		// 		data = DriverStation.getInstance().getGameSpecificMessage();
+		// 		if(data == null)
+		// 			data = "";
+		// 	}
+		// 	catch(Exception e){}
+		// 	retries--;
+		// }
 
-		if(data.equals("") || data == null)
-			data = "";
-		else
-			data = data.substring(0, 2); 
+		// if(data.equals("") || data == null)
+		// 	data = "";
+		// else
+		// 	data = data.substring(0, 2); 
 
-		//Find the primary command for autonomous-----------------------------------
+		// //Find the primary command for autonomous-----------------------------------
 
-		String cmd = "";
+		// String cmd = "";
 
-		if(data.equalsIgnoreCase("RR")) 
-			cmd = subMenuRR.getSelected();
-		else if(data.equalsIgnoreCase("LL"))
-			cmd = subMenuLL.getSelected();
-		else if(data.equalsIgnoreCase("LR"))
-			cmd = subMenuLR.getSelected();
-		else if(data.equalsIgnoreCase("RL"))
-			cmd = subMenuRL.getSelected();
+		// if(data.equalsIgnoreCase("RR")) 
+		// 	cmd = subMenuRR.getSelected();
+		// else if(data.equalsIgnoreCase("LL"))
+		// 	cmd = subMenuLL.getSelected();
+		// else if(data.equalsIgnoreCase("LR"))
+		// 	cmd = subMenuLR.getSelected();
+		// else if(data.equalsIgnoreCase("RL"))
+		// 	cmd = subMenuRL.getSelected();
 
-		Command primaryCommand = parseCommand(cmd);
+		// Command primaryCommand = parseCommand(cmd);
 
-		//Build the command sequence------------------------------
+		// //Build the command sequence------------------------------
 
-		combined = new CommandGroup(); 	
+		// combined = new CommandGroup(); 	
 
-		//Deploy the intake
-		combined.addParallel(new Deploy(true));
+		// //Deploy the intake
+		// combined.addParallel(new Deploy(true));
 
-		//Add whatever time delay the driver selected
-		if(autonomousDelay.getSelected() > 0.01)
-			combined.addSequential(new Delay(autonomousDelay.getSelected())); 
+		// //Add whatever time delay the driver selected
+		// if(autonomousDelay.getSelected() > 0.01)
+		// 	combined.addSequential(new Delay(autonomousDelay.getSelected())); 
 
-		combined.addParallel(new org.usfirst.frc.team670.robot.commands.intake.SpinIntake(-0.15, 10));
+		// combined.addParallel(new org.usfirst.frc.team670.robot.commands.intake.SpinIntake(-0.15, 10));
 		
-		//Add the primary command sequence taken from the smartdashboard
-		if(primaryCommand != null)
-			combined.addSequential(primaryCommand);
+		// //Add the primary command sequence taken from the smartdashboard
+		// if(primaryCommand != null)
+		// 	combined.addSequential(primaryCommand);
 		
-		queuedMessages.add("{Game Data: " + data + "}\n");
-		queuedMessages.add("{Command STR: " + cmd + "}\n");
-		queuedMessages.add("{Command Ran: " + primaryCommand.getName() + "}\n");
+		// queuedMessages.add("{Game Data: " + data + "}\n");
+		// queuedMessages.add("{Command STR: " + cmd + "}\n");
+		// queuedMessages.add("{Command Ran: " + primaryCommand.getName() + "}\n");
 
-		try {
-			String fileName = "Log_" + DriverStation.getInstance().getEventName() +"_" + DriverStation.getInstance().getMatchNumber() + "_" + (int)(1000*Math.random()) + ".txt";
-			log = new File("/home/lvuser/" + fileName);
-		}
-		catch(RuntimeException e) {
-			log = null;
-			e.printStackTrace();
-		}
+		// try {
+		// 	String fileName = "Log_" + DriverStation.getInstance().getEventName() +"_" + DriverStation.getInstance().getMatchNumber() + "_" + (int)(1000*Math.random()) + ".txt";
+		// 	log = new File("/home/lvuser/" + fileName);
+		// }
+		// catch(RuntimeException e) {
+		// 	log = null;
+		// 	e.printStackTrace();
+		// }
 		
-		try {
-			writer = new PrintWriter(new BufferedWriter(new FileWriter(log)), false);
-		} catch (IOException e) {
-			writer = null;
-			e.printStackTrace();
-		}
-		catch(RuntimeException e) {
-			writer = null;
-			e.printStackTrace();
-		}
+		// try {
+		// 	writer = new PrintWriter(new BufferedWriter(new FileWriter(log)), false);
+		// } catch (IOException e) {
+		// 	writer = null;
+		// 	e.printStackTrace();
+		// }
+		// catch(RuntimeException e) {
+		// 	writer = null;
+		// 	e.printStackTrace();
+		// }
 		
-		if(writer != null && log != null) {
-			new Thread(new Runnable(){
+		// if(writer != null && log != null) {
+		// 	new Thread(new Runnable(){
 
-				@Override
-				public void run() {
-					Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-					while(!Thread.interrupted()) {
-						String msg;
-						try {
-							do {
-								msg = queuedMessages.poll();
-								if (msg != null) {
-									writer.write(msg);
-								}
-							} while (msg != null);
-							writer.flush();
-							Thread.sleep(1000);
-						}
-						catch(RuntimeException e){
-							e.printStackTrace();
-						}
-						catch(InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}).start();
-		}
+		// 		@Override
+		// 		public void run() {
+		// 			Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+		// 			while(!Thread.interrupted()) {
+		// 				String msg;
+		// 				try {
+		// 					do {
+		// 						msg = queuedMessages.poll();
+		// 						if (msg != null) {
+		// 							writer.write(msg);
+		// 						}
+		// 					} while (msg != null);
+		// 					writer.flush();
+		// 					Thread.sleep(1000);
+		// 				}
+		// 				catch(RuntimeException e){
+		// 					e.printStackTrace();
+		// 				}
+		// 				catch(InterruptedException e) {
+		// 					e.printStackTrace();
+		// 				}
+		// 			}
+		// 		}
+		// 	}).start();
+		// }
 		
-		LoggingCommand.setLoggingInterval(8);
+		// LoggingCommand.setLoggingInterval(8);
 		
-		//Start running the command sequence----------------------------
-		if (combined != null)
-			combined.start();
+		// //Start running the command sequence----------------------------
+		// if (combined != null)
+		// 	combined.start();
+		//Scheduler.getInstance().add(new Drive(50)); //Laksh's Drivebase testing
 	}
 
 	/**
