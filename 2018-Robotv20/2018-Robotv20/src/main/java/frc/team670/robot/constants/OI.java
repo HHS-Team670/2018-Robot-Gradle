@@ -12,6 +12,8 @@ import frc.team670.robot.constants.RobotMap;
 import frc.team670.robot.constants.enums.OperatorState;
 import frc.team670.robot.utils.MustangController;
 import frc.team670.robot.utils.MustangController.XboxButtons;
+import frc.team670.robot.commands.elevator.Raise;
+import frc.team670.robot.commands.intake.Deploy;
 import frc.team670.robot.commands.teleop.FlipDriveDirection;
 
 /**
@@ -36,8 +38,8 @@ public class OI {
   private Button toggleIntake = new JoystickButton(operatorStick, 1);
   private Button toggleClimber = new JoystickButton(operatorStick, 5);
   
-  private Button retract = new JoystickButton(arcadeStick, 1);
-  private Button deploy = new JoystickButton(arcadeStick, 10);
+  private JoystickButton retract = new JoystickButton(arcadeStick, 1);
+  private JoystickButton deploy = new JoystickButton(arcadeStick, 10);
   
   private Button grab = new JoystickButton(arcadeStick, 2);
   private Button release = new JoystickButton(arcadeStick, 9);
@@ -57,8 +59,17 @@ public class OI {
     driverController = new MustangController(RobotMap.DRIVER_CONTROLLER_PORT);
     //operatorController = new MustangController(RobotMap.OPERATOR_CONTROLLER_PORT);
     toggleReverseDrive = new JoystickButton(driverController, XboxButtons.LEFT_BUMPER);
-    toggleFlexMode = new JoystickButton(driverController, XboxButtons.A);
+    // toggleFlexMode = new JoystickButton(driverController, XboxButtons.A);
     toggleReverseDrive.whenPressed(new FlipDriveDirection());
+
+    retract = new JoystickButton(driverController, XboxButtons.A);
+    retract.whenPressed(new Deploy(false));
+
+    deploy = new JoystickButton(driverController, XboxButtons.B);
+    deploy.whenPressed(new Deploy(true));
+
+    Button raise = new JoystickButton(driverController, XboxButtons.X);
+    raise.whenPressed(new Raise(0.4));
 	}
 
   /**

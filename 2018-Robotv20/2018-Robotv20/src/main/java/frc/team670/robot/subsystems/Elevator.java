@@ -91,7 +91,7 @@ public class Elevator extends SubsystemBase {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-        CommandScheduler.getInstance().setDefaultCommand(this, new Joystick_Elevator());
+        CommandScheduler.getInstance().schedule(new Joystick_Elevator());
 	}
 
 	/**
