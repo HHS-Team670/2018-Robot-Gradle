@@ -166,7 +166,7 @@ public class DriveBase extends SubsystemBase {
 	}
 
 	public void initDefaultCommand() {
-		CommandScheduler.getInstance().schedule(new XboxRocketLeagueDrive());
+		CommandScheduler.getInstance().setDefaultCommand(this, new XboxRocketLeagueDrive());
 	}
 
 	public double getLeftEncPositionInFeet() {

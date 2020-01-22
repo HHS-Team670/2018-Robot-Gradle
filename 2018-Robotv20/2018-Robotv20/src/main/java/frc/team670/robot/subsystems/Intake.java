@@ -1,7 +1,7 @@
 package frc.team670.robot.subsystems;
 
 import frc.team670.robot.Robot;
-import frc.team670.robot.commands.joystick_control.Joystick_Intake;
+import frc.team670.robot.commands.intake.Joystick_Intake;
 import frc.team670.robot.constants.Constants;
 import frc.team670.robot.constants.RobotMap;
 

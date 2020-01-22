@@ -2,7 +2,7 @@ package frc.team670.robot.subsystems;
 
 import frc.team670.robot.Robot;
 import frc.team670.robot.RobotContainer;
-import frc.team670.robot.commands.joystick_control.Joystick_Elevator;
+import frc.team670.robot.commands.elevator.Joystick_Elevator;
 import frc.team670.robot.constants.Constants;
 import frc.team670.robot.constants.RobotMap;
 
@@ -91,7 +91,7 @@ public class Elevator extends SubsystemBase {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-        CommandScheduler.getInstance().schedule(new Joystick_Elevator());
+        CommandScheduler.getInstance().setDefaultCommand(this, new Joystick_Elevator());
 	}
 
 	/**

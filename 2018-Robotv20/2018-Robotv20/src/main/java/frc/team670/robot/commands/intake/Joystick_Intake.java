@@ -1,4 +1,4 @@
-package frc.team670.robot.commands.joystick_control;
+package frc.team670.robot.commands.intake;
 
 import java.util.HashMap;
 
@@ -27,10 +27,10 @@ public class Joystick_Intake extends CommandBase {
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		if(RobotContainer.oi.getOS().equals(OperatorState.INTAKE))
-        RobotContainer.intake.driveIntake(-RobotContainer.oi.getOperatorStick().getY());
-		else
-        RobotContainer.intake.driveIntake(0);
+		// if(RobotContainer.oi.getDriverController().getRightStickX()>0.05)
+        RobotContainer.intake.driveIntake(-RobotContainer.oi.getDriverController().getRightStickX());
+		// else
+        // RobotContainer.intake.driveIntake(0);
 		
 	}
 

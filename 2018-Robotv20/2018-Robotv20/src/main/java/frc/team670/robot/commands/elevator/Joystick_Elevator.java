@@ -1,4 +1,4 @@
-package frc.team670.robot.commands.joystick_control;
+package frc.team670.robot.commands.elevator;
 
 import java.util.HashMap;
 
@@ -32,6 +32,7 @@ public class Joystick_Elevator extends CommandBase{
 		//Speed is negative meaning it goes up
 		isGoingUp = speed <= 0;
 		speed = RobotContainer.elevator.calculateSpeed((int) RobotContainer.elevator.getCurrentPosition(),RobotContainer.oi.getDriverController().getRightStickY(), isGoingUp);
+		System.out.println(speed);
 		RobotContainer.elevator.moveElevator(speed);
 	}
 

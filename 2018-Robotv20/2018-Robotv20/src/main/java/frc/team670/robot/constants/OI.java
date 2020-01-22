@@ -14,6 +14,7 @@ import frc.team670.robot.utils.MustangController;
 import frc.team670.robot.utils.MustangController.XboxButtons;
 import frc.team670.robot.commands.elevator.Raise;
 import frc.team670.robot.commands.intake.Deploy;
+import frc.team670.robot.commands.intake.Grab;
 import frc.team670.robot.commands.teleop.FlipDriveDirection;
 
 /**
@@ -26,7 +27,7 @@ public class OI {
   private MustangController driverController;
 
   // Buttons
-  private JoystickButton toggleReverseDrive, toggleFlexMode;
+  private JoystickButton toggleReverseDrive;
 
   private OperatorState os = OperatorState.NONE;
 
@@ -42,7 +43,7 @@ public class OI {
   private JoystickButton deploy = new JoystickButton(arcadeStick, 10);
   
   private Button grab = new JoystickButton(arcadeStick, 2);
-  private Button release = new JoystickButton(arcadeStick, 9);
+  private Button yeet = new JoystickButton(arcadeStick, 9);
   
   private Button elevatorExchange = new JoystickButton(arcadeStick, 3);
   private Button elevatorSwitch = new JoystickButton(arcadeStick, 8);
@@ -68,8 +69,11 @@ public class OI {
     deploy = new JoystickButton(driverController, XboxButtons.B);
     deploy.whenPressed(new Deploy(true));
 
-    Button raise = new JoystickButton(driverController, XboxButtons.X);
-    raise.whenPressed(new Raise(0.4));
+    grab = new JoystickButton(driverController, XboxButtons.X);
+    grab.whenPressed(new Grab(false));
+
+    yeet = new JoystickButton(driverController, XboxButtons.Y);
+    yeet.whenPressed(new Grab(true));
 	}
 
   /**
