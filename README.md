@@ -1,6 +1,10 @@
 # 2018-Robot-Gradle
 2018 Robot Code converted to a GradleRIO build
 
+## Repository Organization:<br/>
+- src: Java code and files to be deployed to run on the RoboRIO that are organized and deployed with GradleRIO<br/>
+- 2018-Robotv20/2018-Robotv20: Java code and files to be deployed on RoboRIO 2020
+
 ## Branching and Workflow on this Repository<br/>
 Please check this document for the team's policy for committing code to GitHub!<br/>
 https://docs.google.com/document/d/1vO_dtVTDw3-l0x0BabiAE5C45O6bJlQeLL1Uy9McOcQ/edit?usp=sharing <br/>
