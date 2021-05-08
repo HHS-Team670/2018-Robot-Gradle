@@ -27,11 +27,11 @@ public class Joystick_Elevator extends CommandBase{
 
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
-		speed = RobotContainer.oi.getDriverController().getRightStickY();
+		speed = RobotContainer.oi.getOperatorStick().getY();
 		
 		//Speed is negative meaning it goes up
 		isGoingUp = speed <= 0;
-		speed = RobotContainer.elevator.calculateSpeed((int) RobotContainer.elevator.getCurrentPosition(),RobotContainer.oi.getDriverController().getRightStickY(), isGoingUp);
+		speed = RobotContainer.elevator.calculateSpeed((int) RobotContainer.elevator.getCurrentPosition(),RobotContainer.oi.getOperatorStick().getY(), isGoingUp);
 		System.out.println(speed);
 		RobotContainer.elevator.moveElevator(speed);
 	}

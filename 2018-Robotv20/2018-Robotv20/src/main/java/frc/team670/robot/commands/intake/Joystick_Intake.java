@@ -28,7 +28,7 @@ public class Joystick_Intake extends CommandBase {
 	// Called repeatedly when this Command is scheduled to run
 	public void execute() {
 		// if(RobotContainer.oi.getDriverController().getRightStickX()>0.05)
-        RobotContainer.intake.driveIntake(-RobotContainer.oi.getDriverController().getRightStickX());
+        RobotContainer.intake.driveIntake(-RobotContainer.oi.getOperatorStick().getX());
 		// else
         // RobotContainer.intake.driveIntake(0);
 		

@@ -31,29 +31,15 @@ public class OI {
 
   private OperatorState os = OperatorState.NONE;
 
-  private Joystick operatorStick = new Joystick(RobotMap.operatorStick);
   private Joystick arcadeStick = new Joystick(RobotMap.arcadeStick);
 
   // Operator Controls
-  private Button toggleElevator = new JoystickButton(operatorStick, 3);
-  private Button toggleIntake = new JoystickButton(operatorStick, 1);
-  private Button toggleClimber = new JoystickButton(operatorStick, 5);
   
   private JoystickButton retract = new JoystickButton(arcadeStick, 1);
   private JoystickButton deploy = new JoystickButton(arcadeStick, 10);
   
   private Button grab = new JoystickButton(arcadeStick, 2);
   private Button yeet = new JoystickButton(arcadeStick, 9);
-  
-  private Button elevatorExchange = new JoystickButton(arcadeStick, 3);
-  private Button elevatorSwitch = new JoystickButton(arcadeStick, 8);
-  
-  private Button CancelCommand = new JoystickButton(arcadeStick, 5);
-  private Button elevatorScale = new JoystickButton(arcadeStick, 4);
-  
-  private Button toggleElevatorLimits = new JoystickButton(arcadeStick, 6);
-  
-  private Button vision_Pivot = new JoystickButton(arcadeStick, 7);
 
   	public OI() {
 
@@ -122,7 +108,7 @@ public class OI {
 //	private Button right135 = new JoystickButton(rightDriveStick, 10);
 
 	public Joystick getOperatorStick() {
-		return operatorStick;
+		return arcadeStick;
 	}
 
 	public OperatorState getOS() {
