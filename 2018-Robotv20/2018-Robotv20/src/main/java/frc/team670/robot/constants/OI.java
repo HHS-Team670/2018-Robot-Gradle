@@ -35,11 +35,11 @@ public class OI {
 
   // Operator Controls
   
-  private JoystickButton retract = new JoystickButton(arcadeStick, 1);
-  private JoystickButton deploy = new JoystickButton(arcadeStick, 10);
+  private JoystickButton retract = new JoystickButton(arcadeStick, 4);
+  private JoystickButton deploy = new JoystickButton(arcadeStick, 5);
   
   private Button grab = new JoystickButton(arcadeStick, 2);
-  private Button yeet = new JoystickButton(arcadeStick, 9);
+  private Button yeet = new JoystickButton(arcadeStick, 3);
 
   	public OI() {
 
@@ -49,16 +49,16 @@ public class OI {
     // toggleFlexMode = new JoystickButton(driverController, XboxButtons.A);
     toggleReverseDrive.whenPressed(new FlipDriveDirection());
 
-    retract = new JoystickButton(driverController, XboxButtons.A);
+    retract = new JoystickButton(arcadeStick, 4);
     retract.whenPressed(new Deploy(false));
 
-    deploy = new JoystickButton(driverController, XboxButtons.B);
+    deploy = new JoystickButton(arcadeStick, 5);
     deploy.whenPressed(new Deploy(true));
 
-    grab = new JoystickButton(driverController, XboxButtons.X);
+    grab = new JoystickButton(arcadeStick, 2);
     grab.whenPressed(new Grab(false));
 
-    yeet = new JoystickButton(driverController, XboxButtons.Y);
+    yeet = new JoystickButton(arcadeStick, 3);
     yeet.whenPressed(new Grab(true));
 	}
 
