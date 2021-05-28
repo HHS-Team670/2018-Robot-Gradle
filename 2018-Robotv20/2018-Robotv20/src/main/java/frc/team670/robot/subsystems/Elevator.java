@@ -108,11 +108,11 @@ public class Elevator extends SubsystemBase {
 		
 		double RATIO_TICKS_COVERED_TO_VELOCITY_UP = 220.0/136.0;
 		double RATIO_TICKS_COVERED_TO_VELOCITY_DOWN = 540.0/350.0;
-		double ACCELERATION_TOLERANCE_UP = 0.5;
+		double ACCELERATION_TOLERANCE_UP = 0.75;
 		double ACCELERATION_TOLERANCE_DOWN = 0.75;
-		double MAX_VELOCITY_UP = 280;
+		double MAX_VELOCITY_UP = 700;
 		double MAX_VELOCITY_DOWN = 350;
-		double COAST_DISTANCE_MAX_SPEED_UP = 450; //When the 0.1 braking speed changes, the value for coasting at max speed changes
+		double COAST_DISTANCE_MAX_SPEED_UP = 800; //When the 0.1 braking speed changes, the value for coasting at max speed changes
 		double COAST_DISTANCE_MAX_SPEED_DOWN = 800; //When the 0.1 braking speed changes, the value for coasting at max speed changes
 		double currentVelocity = RobotContainer.elevator.getCurrentVelocity();
 		
@@ -170,7 +170,7 @@ public class Elevator extends SubsystemBase {
 //		System.out.print(", " + currentTicks);
 //		System.out.print(", " + currentVelocity);
 //		System.out.println(", " + tolerance);
-//		
+		System.out.println(speed);
 		return speed;
 
 	}

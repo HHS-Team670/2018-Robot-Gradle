@@ -16,6 +16,10 @@ import frc.team670.robot.commands.elevator.Raise;
 import frc.team670.robot.commands.intake.Deploy;
 import frc.team670.robot.commands.intake.Grab;
 import frc.team670.robot.commands.teleop.FlipDriveDirection;
+import frc.team670.robot.RobotContainer;
+import frc.team670.robot.commands.GetVisionData;
+import frc.team670.robot.commands.elevator.Encoders_Elevator;
+import frc.team670.robot.constants.enums.ElevatorState;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,6 +37,13 @@ public class OI {
 
   private Joystick arcadeStick = new Joystick(RobotMap.arcadeStick);
 
+
+  private JoystickButton elevatorExchange = new JoystickButton(arcadeStick, 11);
+  private JoystickButton elevatorScale = new JoystickButton(arcadeStick, 10);
+	private JoystickButton elevatorSwitch = new JoystickButton(arcadeStick, 7);
+
+
+  private JoystickButton triggerVision;
   // Operator Controls
   
   private JoystickButton retract = new JoystickButton(arcadeStick, 4);
@@ -49,6 +60,9 @@ public class OI {
     // toggleFlexMode = new JoystickButton(driverController, XboxButtons.A);
     toggleReverseDrive.whenPressed(new FlipDriveDirection());
 
+    triggerVision = new JoystickButton(driverController, XboxButtons.A);
+    triggerVision.whenPressed(new GetVisionData(RobotContainer.vision, RobotContainer.driveBase));
+
     retract = new JoystickButton(arcadeStick, 4);
     retract.whenPressed(new Deploy(false));
 
@@ -60,6 +74,10 @@ public class OI {
 
     yeet = new JoystickButton(arcadeStick, 3);
     yeet.whenPressed(new Grab(true));
+
+    elevatorSwitch.whenPressed(new Encoders_Elevator(ElevatorState.SWITCH));
+		elevatorScale.whenPressed(new Encoders_Elevator(ElevatorState.HIGHSCALE));
+		elevatorExchange.whenPressed(new Encoders_Elevator(ElevatorState.EXCHANGE));
 	}
 
   /**

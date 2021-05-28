@@ -15,6 +15,7 @@ import frc.team670.robot.constants.OI;
 import frc.team670.robot.subsystems.DriveBase;
 import frc.team670.robot.subsystems.Elevator;
 import frc.team670.robot.subsystems.Intake;
+import frc.team670.robot.subsystems.Vision;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -26,9 +27,11 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   public static DriveBase driveBase = new DriveBase();
-  public static OI oi = new OI();
+  public static Vision vision  = new Vision();
   public static Elevator elevator = new Elevator();
+  public static OI oi = new OI();
   public static Intake intake = new Intake();
+
 
 
 
