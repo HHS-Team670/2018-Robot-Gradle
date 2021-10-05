@@ -59,7 +59,10 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+    MustangCommand autonCommand = new GoStraightPath2021(driveBase);
+    Logger.consoleLog("autonCommand: %s", autonCommand);
+    return autonCommand;
     // An ExampleCommand will run in autonomous
-    return null;
+    // return null;
   }
 }
